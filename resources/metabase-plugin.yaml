@@ -1,0 +1,23 @@
+info:
+  name: Metabase DAMENG Driver
+  version: 8.1.1.193
+  description: Allows Metabase to connect to DAMENG databases.
+contact-info:
+  name: WayneHouse
+  address: 517441250@qq.com
+driver:
+  name: dameng
+  display-name: DAMENG
+  lazy-load: true
+  parent: sql-jdbc
+  connection-properties:
+    - dbname
+    - host
+    - port
+    - user
+    - password
+init:
+  - step: load-namespace
+    namespace: metabase.driver.dameng
+  - step: register-jdbc-driver
+    class: dm.jdbc.driver.DmDriver

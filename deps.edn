@@ -1,0 +1,19 @@
+{:paths
+ ["/home/sample-driver-master/src" "/home/sample-driver-master/resources"]
+
+ :deps
+ {com.dameng/DmJdbcDriver18 {:local/root "/home/DmJdbcDriver18.jar",:deps/manifest :jar}}
+
+;  {org.postgresql/postgresql {:mvn/version "42.3.1"}}
+
+ ;; build the driver with clojure -X:build
+ :aliases
+ {:build
+  ;; to avoid hardcoding these paths in the project-level deps file, an alias pointing to these extra-deps can be defined in user-specific ~/.clojure/deps.edn
+  ;; files instead; suppose we do so, and call it :metabase-core-deps, then we can simply add :metabase-core-deps to the build invocation above	
+  {:extra-deps {metabase/metabase-core {:local/root "/home/aift-metabase"}
+                metabase/build-drivers {:local/root "/home/aift-metabase/bin/build-drivers"}}
+   :exec-fn    build-drivers.build-driver/build-driver!
+   :exec-args  {:driver      :dameng
+                :project-dir "."
+                :target-dir  "./target"}}}}
